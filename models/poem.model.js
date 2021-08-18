@@ -1,10 +1,11 @@
 const mongoose = require('mongoose');
 
 const poemScheme = mongoose.Schema({
-  name: String,
+  title: String,
   tags: [],
-  author: String,
-  date: Date
+  poet: String,
+  url: String,
+  year: Number
 })
 
 let Poem = mongoose.model('Poem', poemScheme);

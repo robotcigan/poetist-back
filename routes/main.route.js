@@ -9,7 +9,7 @@ router.get('', (req, res, next) => {
 router.get('/poems', (req, res, next) => {
   poemService.findPoems()
     .then(poems => {
-      res.send({poems: poems});
+      res.send(poems);
     })
     .catch(err => next(err));
 });
@@ -18,7 +18,7 @@ router.get('/poems', (req, res, next) => {
 router.get('/poem/:url', (req, res, next) => {
   poemService.findPoemByUrl(req.params.url)
     .then(poem => {
-      res.send({poem: poem});
+      res.send(poem);
     })
     .catch(err => next(err));
 });
