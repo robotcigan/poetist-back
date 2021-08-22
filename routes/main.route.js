@@ -5,7 +5,7 @@ router.get('', (req, res, next) => {
   res.send('main page');
 });
 
-// show all poems
+// show all poem
 router.get('/poems', (req, res, next) => {
   poemService.findPoems()
     .then(poems => {
