@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Poem = require('../models/poem.model.js');
 
-// find all poem
+// find all poems
 module.exports.findPoems = () => {
   return Poem.find();
 }
