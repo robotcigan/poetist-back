@@ -12,5 +12,5 @@ module.exports.findPoets = () => {
 // }
 
 module.exports.findPoetByUrl = (url) => {
-  return Poet.find({url: url})
+  return Poet.findOne({url: url})
 }

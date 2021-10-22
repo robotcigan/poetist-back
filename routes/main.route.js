@@ -24,6 +24,15 @@ router.get('/poem/:url', (req, res, next) => {
     .catch(err => next(err));
 });
 
+// show all poems by one poet (author)
+router.get('/poet/:url/poems', (req, res, next) => {
+  poemService.findPoemsByPoet(req.params.url)
+    .then(poems => {
+      res.send(poems);
+    })
+    .catch(err => next(err));
+})
+
 // show all poets
 router.get('/poets', (req, res, next) => {
   poetService.findPoets()

@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+const mongoose = require('mongoose')
 
 const poetScheme = mongoose.Schema({
   _id: String,
@@ -11,9 +11,9 @@ const poetScheme = mongoose.Schema({
   },
   born: Date,
   died: Date,
-  years: Number,
+  years: Number
 })
 
-let Poet = mongoose.model('Poet', poetScheme);
+let Poet = mongoose.model('Poet', poetScheme)
 
-module.exports = Poet;
+module.exports = Poet
