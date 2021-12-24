@@ -1,6 +1,7 @@
 const router = require('express').Router();
 const poemService = require('../services/poem.service');
 const poetService = require('../services/poet.service');
+const searchService = require('../services/search.service');
 
 router.get('', (req, res, next) => {
   res.send('main page');
@@ -33,6 +34,8 @@ router.get('/poet/:url/poems', (req, res, next) => {
     .catch(err => next(err));
 })
 
+// ---------------------------
+
 // show all poets
 router.get('/poets', (req, res, next) => {
   poetService.findPoets()
@@ -50,5 +53,18 @@ router.get('/poet/:url', (req, res, next) => {
     })
     .catch(err => next(err));
 })
+
+// ---------------------------
+
+router.post('/search', (req, res, next) => {
+  console.log(req.body)
+  // res.send({text: 'from server'})
+  searchService.search(req.body.query)
+    .then(searchResult => {
+      console.log(searchResult)
+      res.send(searchResult);
+    })
+    .catch(err => next(err));
+});
 
 module.exports = router;
