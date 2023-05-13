@@ -4,7 +4,7 @@ const poetScheme = mongoose.Schema({
   _id: String,
   firstName: String,
   lastName: String,
-  middleName: String,
+  fathersName: String,
   url: {
     type: String,
     unique: true
