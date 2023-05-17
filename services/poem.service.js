@@ -11,6 +11,12 @@ module.exports.findPoemsByPoet = (poet) => {
   return Poem.find({poet: poet})
 }
 
+// find 10 poems by multiple Poets (authors)
+module.exports.findPoemsByPoets = (poets) => {
+  console.log('poets', poets.split(","))
+  return Poem.find({poet: poets.split(',')})
+}
+
 // find one poem
 // module.exports.findPoemById = (id) => {
 //   return Poem.findById(id);

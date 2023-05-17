@@ -7,7 +7,7 @@ router.get('', (req, res, next) => {
   res.send('main page');
 });
 
-// show all poem
+// show all poems
 router.get('/poems', (req, res, next) => {
   poemService.findPoems()
     .then(poems => {
@@ -15,6 +15,16 @@ router.get('/poems', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
+// find 10 poems by multiple Poets (authors)
+router.get('/poemsbypoets', (req, res, next) => {
+  console.log(req.query.poets)
+  poemService.findPoemsByPoets(req.query.poets)
+    .then(poems => {
+      res.send(poems);
+    })
+    .catch(err => next(err));
+})
 
 // show one poem by url
 router.get('/poem/:url', (req, res, next) => {
@@ -27,12 +37,14 @@ router.get('/poem/:url', (req, res, next) => {
 
 // show all poems by one poet (author)
 router.get('/poet/:url/poems', (req, res, next) => {
+  console.log(req.params.url)
   poemService.findPoemsByPoet(req.params.url)
     .then(poems => {
       res.send(poems);
     })
     .catch(err => next(err));
 })
+
 
 // ---------------------------
 
