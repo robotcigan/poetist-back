@@ -25,3 +25,8 @@ module.exports.findPoemsByPoets = (poets) => {
 module.exports.findPoemByUrl = (url) => {
   return Poem.find({url: url})
 }
+
+// delete all poems
+// module.exports.deleteAllPoems = () => {
+//   return Poem.deleteMany()
+// }

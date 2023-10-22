@@ -7,6 +7,7 @@ router.get('', (req, res, next) => {
   res.send('main page');
 });
 
+
 // show all poems
 router.get('/poems', (req, res, next) => {
   poemService.findPoems()
@@ -78,5 +79,16 @@ router.post('/search', (req, res, next) => {
     })
     .catch(err => next(err));
 });
+
+// ---------------------------
+
+// delete all poems
+// router.get('/deleteallpoems', (req, res, next) => {
+//   poemService.deleteAllPoems()
+//     .then(poems => {
+//       res.send(poems);
+//     })
+//     .catch(err => next(err));
+// });
 
 module.exports = router;
