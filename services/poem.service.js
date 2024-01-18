@@ -27,6 +27,6 @@ module.exports.findPoemByUrl = (url) => {
 }
 
 // delete all poems
-// module.exports.deleteAllPoems = () => {
-//   return Poem.deleteMany()
-// }
+module.exports.deleteAllPoems = () => {
+  return Poem.deleteMany()
+}

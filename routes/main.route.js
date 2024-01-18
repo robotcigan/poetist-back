@@ -12,12 +12,22 @@ router.get('', (req, res, next) => {
 router.get('/poems', (req, res, next) => {
   poemService.findPoems()
     .then(poems => {
-      res.send(poems);
+      // Чтобы не прегружать данными при их передачи, я убираю тексты и другую лишнюю инфу и оставляю только url, poet, title
+      let poemsUrlAndTitleOnly = poems.map(poem => {
+        let newPoem = {
+          "url": poem.url,
+          "title": poem.title,
+          "poet": poem.poet
+        }
+        return newPoem
+      })
+      // res.send(poems);
+      res.send(poemsUrlAndTitleOnly);
     })
     .catch(err => next(err));
 });
 
-// find 10 poems by multiple Poets (authors)
+// find 10 poems by multiple Poets (authors) for search
 router.get('/poemsbypoets', (req, res, next) => {
   console.log(req.query.poets)
   poemService.findPoemsByPoets(req.query.poets)
@@ -41,7 +51,16 @@ router.get('/poet/:url/poems', (req, res, next) => {
   console.log(req.params.url)
   poemService.findPoemsByPoet(req.params.url)
     .then(poems => {
-      res.send(poems);
+      // Чтобы не прегружать данными при их передачи, я убираю тексты и другую лишнюю инфу и оставляю только url и title
+      let poemsUrlAndTitleOnly = poems.map(poem => {
+        let newPoem = {
+          "url": poem.url,
+          "title": poem.title
+        }
+        return newPoem
+      })
+      // res.send(poems);
+      res.send(poemsUrlAndTitleOnly);
     })
     .catch(err => next(err));
 })
@@ -83,12 +102,12 @@ router.post('/search', (req, res, next) => {
 // ---------------------------
 
 // delete all poems
-// router.get('/deleteallpoems', (req, res, next) => {
-//   poemService.deleteAllPoems()
-//     .then(poems => {
-//       res.send(poems);
-//     })
-//     .catch(err => next(err));
-// });
+router.get('/deleteallpoems', (req, res, next) => {
+  poemService.deleteAllPoems()
+    .then(poems => {
+      res.send(poems);
+    })
+    .catch(err => next(err));
+});
 
 module.exports = router;
