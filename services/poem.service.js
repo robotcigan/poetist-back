@@ -7,14 +7,22 @@ module.exports.findPoems = () => {
 }
 
 // find all poems by one poet (author)
-module.exports.findPoemsByPoet = (poet) => {
-  return Poem.find({poet: poet})
+module.exports.findPoemsByPoet = (poet, popular) => {
+  // Если в get-запросе есть popular=true, то я передам только популярные
+  if (popular) {
+    return Poem.find({poet: poet, popular: true})
+  } else {
+    return Poem.find({poet: poet})
+  }
 }
 
-// find 10 poems by multiple Poets (authors)
-module.exports.findPoemsByPoets = (poets) => {
-  console.log('poets', poets.split(","))
-  return Poem.find({poet: poets.split(',')})
+// find poems by multiple Poets (authors)
+module.exports.findPoemsByPoets = (poets, popular) => {
+  if (popular) {
+    return Poem.find({poet: poets.split(','), popular: true})
+  } else {
+    return Poem.find({poet: poets.split(',')})
+  }
 }
 
 // find one poem

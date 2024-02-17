@@ -6,6 +6,7 @@ const poemScheme = mongoose.Schema({
   text: String,
   year: Number,
   poet: String,
+  popular: Boolean,
   url: String
 })
 
